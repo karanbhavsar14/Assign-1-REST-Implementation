@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <style>
+            .blue {
+                color: blue;
+                font-size: 20px;
+            }
+            #demo
+            {
+                border:1px solid black;
+                height:500px;
+                width:500px;
+                padding-left: 15px;
+                float: left;
+                margin-left: 15%;
+            }
+            h2
+            {
+                margin-left: 40%;
+            }
+            .ancestors * { 
+                display: block;
+                border: 2px solid lightgrey;
+                color: lightgrey;
+                padding: 5px;
+                margin: 15px;
+                float: left;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+        <script>
+
+            $(document).ready(function () {
+                //script to hide and show the html elements
+                $("#hide").click(function () {
+                    $("p").hide(2000);
+                });
+                $("#show").click(function () {
+                    $("p").show();
+                });
+
+                //Script to toggle between an element[toggle : perform hide and show methods by using a single button]
+                //parameters : slow,fast,milliseconds
+                $("#toggle").click(function () {
+                    $("#flip").toggle(3000);
+                });
+
+                //use of slide effects : slideUP,slideDown,slideToggle
+                $("#slideToggle").click(function () {
+                    $("#flip").slideToggle(3000);
+                });
+
+                //use of animate methods : animate({params},speed,callback);
+                //we can give relative values to a property of css
+                $("#animate").click(function () {
+                    $("#flip").animate({left: '100px', opacity: '0.5'}, 3000);
+                });
+
+                //stop(stopAll,goToEnd)
+                $("#stop").click(function () {
+                    $("#flip").stop();
+                });
+
+                //use of text(),html(),val() methods[to GET data] for DOM manipulation
+                $("#get").click(function () {
+                    alert($("p").text());
+                });
+
+                //use of text(),html(),val() methods[to GET data] for DOM manipulation
+                $("#set").click(function () {
+                    $("p").html("<b>karan</b>");
+                });
+
+                //Adding css class to the html elements through jquery[use of addclass and toggleclass method]
+                $("#addclass").click(function ()
+                {
+                    $("p,h1").toggleClass("blue");
+                });
+
+                //jquery with javascript
+                $(document).ready(
+                        function ()
+                        {
+                            setInterval(function () {
+                                document.getElementById("flip").innerHTML = Date();
+                            }, 1000);
+                        }
+                );
+
+                //DOM tree traversal[ancestors and descendants]
+                $(document).ready(function () {
+                    $("span").parentsUntil("div").css({"color": "red", "border": "2px solid red"});
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h2><u>Jquery Methods Demo</u></h2>
+        <div id="demo">
+            <p>If you click on the <b>"Hide" button,</b> I will disappear.</p>
+            <h1>Hello World !!</h1>
+
+            <button id="hide">Hide</button>
+            <button id="show">Show</button>
+            <button id="toggle">Toggle</button>
+            <button id="slideToggle">Slide Toggle</button><br><br>
+            <button id="animate">Animate</button>
+            <button id="stop">Stop Sliding</button>
+            <button id="get">Get Data</button>
+            <button id="set">Set Data</button><br><br>
+            <button id="addclass">Add css to HTML elements</button><br><br>
+
+            <div id="flip" style="height: 200px;width: 300px;border: 1px solid black;position: absolute;background:#98bf21">
+
+            </div>
+        </div>
+
+        <div class="ancestors">
+            <div style="width:500px;">div (great-grandparent)
+                <ul>ul (grandparent)  
+                    <li>li (direct parent)
+                        <span>span</span>
+                        <span>span1</span>
+                    </li>
+                </ul>   
+            </div>
+
+            <div style="width:500px;">div (grandparent)   
+                <p>p (direct parent)
+                    <span>span</span>
+                </p> 
+            </div>
+        </div>
+    </body>
+</html>
